@@ -1,11 +1,6 @@
 // Different of _app.tsx, the _document it`s like the index.html from ReactJS
 // Here it`s where will stay all information that need to render one time
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-} from "../../node_modules/next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
   render() {
