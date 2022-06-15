@@ -23,7 +23,12 @@ export const config = {
 //Desabilitando o entendimento padrão do next sobre o que tá vindo da requisição que é uma Stream, que por padrão vem em json ou como um envio de um form
 
 //Quais são os eventos importantes para a nossa aplicação
-const releventEvents = new Set(["checkout.session.completed"]);
+const relevantEvents = new Set([
+  "checkout.session.completed",
+  "customer.subscription.created",
+  "customer.subscription.updated",
+  "customer.subscription.deleted",
+]);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if ((req.method = "POST")) {
@@ -45,10 +50,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { type } = event;
 
-    if (releventEvents.has(type)) {
+    if (relevantEvents.has(type)) {
       //como no futuro a aplicação vai precisar de outros eventos...
       try {
         switch (type) {
+          case "customer.subscription.updated":
+          case "customer.subscription.deleted":
+            const subscription = event.data.object as Stripe.Subscription;
+
+            await saveSubscription(
+              subscription.id,
+              subscription.customer.toString(),
+              false
+            )
+            break;
           case "checkout.session.completed":
             // Tipando para descobrir o que tem dentro dela
             const checkoutSession = event.data
@@ -56,7 +71,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             await saveSubscription(
               checkoutSession.subscription.toString(),
-              checkoutSession.customer.toString()
+              checkoutSession.customer.toString(),
+              true
             );
 
             break;
@@ -64,6 +80,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             throw new Error("Unhandled event");
         }
       } catch (error) {
+        console.log(error);
         return res.json({ error: "Webhook handler filed" });
       }
     }
