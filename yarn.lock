@@ -1167,10 +1167,10 @@
   resolved "https://registry.npmjs.org/@panva/hkdf/-/hkdf-1.0.2.tgz"
   integrity sha512-MSAs9t3Go7GUkMhpKC44T58DJ5KGk2vBo+h1cqQeqlMfdGkxaVB78ZWpv9gYi/g2fa4sopag9gJsNvS8XGgWJA==
 
-"@prismicio/client@^6.6.0":
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-6.6.0.tgz#62d43678858a1b47fb08d6d2431f780a496c4a3d"
-  integrity sha512-bjsRf/sNxwo7hpAUWp36hR44j1lnh6X2Hx+YYvPcJZF/kBurGX49QoURJHGsevITcHV3fBpRLwkWBx9a5bTfwA==
+"@prismicio/client@^6.6.1":
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-6.6.1.tgz#087547a7d3283906a0d4cf7ea417e756fdc9b8eb"
+  integrity sha512-Jq/s9fC8pz49f68dk6gMNFqDItPg7Ka8PO0D9dTzibx83+GKha+y0clqaygxPWlgE8csc9Yk/KS6N8AvesnTVA==
   dependencies:
     "@prismicio/helpers" "^2.3.1"
     "@prismicio/types" "^0.1.29"
